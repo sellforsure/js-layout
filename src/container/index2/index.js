@@ -70,4 +70,5 @@ const createCommunityInfo = () => {
   return createCommunityInfo
 }
 
+const communityInfoBlock = createCommunityInfo()
 

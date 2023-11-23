@@ -9,77 +9,65 @@ const header = createHeader()
 
 page.append(header)
 
-const title = createElement('h1', 'title', 'Мій блог')
+const title = createElement('h1', 'title', 'Ком`юніті')
 
 page.append(title)
 
-const POST_LIST = [
-  {
-    category: [
-      { text: 'Важливо', id: 1 },
-      { text: 'Нова', id: 2 },
-    ],
-    info: 'До біса планувальник, наймаємо дизайнера і готуємося до презентації, як Джобс',
-    date: '25.01',
-    viewed: false,
-  },
-  {
-    category: [{ text: 'Нова', id: 2 }],
-    info: 'Ми хотіли щоб у цьому чаті було близько 150 людей щоб зробити якісний пак самопрезентацій.',
-    date: '10.01',
-    viewed: true,
-  },
-]
+const createCommunityInfo = () => {
+  const createCommunity = createElement('main', 'community')
 
-const createPost = () => {
-  const postList = createElement('main', 'post__list')
+  const headerInfo = createElement(
+    'div',
+    'community__header',
+  )
 
-  POST_LIST.forEach((postData) => {
-    const post = createElement(
-      'div',
-      postData.viewed
-        ? 'post button post--viewed'
-        : 'post button',
-    )
+  const createButtonClosed = createElement(
+    'button',
+    'button--closed',
+    'База знань',
+  )
+  headerInfo.append(createButtonClosed)
 
-    const postHeader = createElement('div', 'post__header')
+  const createButtonOpen = createElement(
+    'button',
+    'button--open',
+    'Інформація',
+  )
+  headerInfo.append(createButtonOpen)
 
-    const postCategoryList = createElement(
-      'div',
-      'post__category-list',
-    )
+  createCommunity.append(headerInfo)
 
-    postData.category.forEach((category) => {
-      const categorySpan = createElement(
-        'span',
-        `post__category post__category--${category.id}`,
-        category.text,
-      )
+  const img = createElement('img')
+  img.src = 'img/image.png'
+  createCommunity.append(img)
 
-      postCategoryList.append(categorySpan)
-    })
+  const createInfo = createElement('div', 'community__info')
+  createCommunity.append(createInfo)
 
-    const dateSpan = createElement(
-      'span',
-      'post__date',
-      postData.date,
-    )
+  const createInfoTitle = createElement(
+    'h2',
+    'community__title',
+    'Що таке база знань?',
+  )
+  createInfo.append(createInfoTitle)
 
-    postHeader.append(postCategoryList, dateSpan)
+  const createInfoDescription = createElement(
+    'p',
+    'community__description',
+    'База знань - база даних, що містить правила виведення та інформацію про містить інформацію, що є результатом вирішення попередніх завдань.',
+  )
+  createInfo.append(createInfoDescription)
 
-    const infoParagraph = createElement(
-      'p',
-      'post__info',
-      postData.info,
-    )
+  const buttonLink = createElement(
+    'button',
+    'button button__link',
+    'Перейти до ком`юніті у Телеграм',
+  )
+  createCommunity.append(buttonLink)
 
-    post.append(postHeader, infoParagraph)
+  page.append(createCommunity)
 
-    postList.append(post)
-  })
-
-  return postList
+  return createCommunityInfo
 }
 
-const post = createPost()
-page.append(post)
+const communityInfoBlock = createCommunityInfo()
